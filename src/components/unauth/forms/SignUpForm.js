@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Button} from 'react-native';
 import {Field, reduxForm} from 'redux-form';
 import TextField from './../../common/TextField';
+import {authentication} from './../../../store/services/firebase';
 
 const SignUpForm = (props) => {
   console.log('SignUpForm', props);
@@ -33,9 +34,23 @@ const SignUpForm = (props) => {
       />
       <Button
         title="Registrar"
-        onPress={props.handleSubmit((values) => {
-          console.log(values);
-        })}
+        onPress={props.handleSubmit(
+          props.onRegisterUser,
+          // (values) => {
+          //   console.log(values);
+          //   const {email, password} = values;
+          //   authentication
+          //     .createUserWithEmailAndPassword(email, password)
+          //     .then((success) => {
+          //       console.log('success');
+          //     })
+          //     .catch((error) => {
+          //       console.log(error);
+          //       var errorCode = error.code;
+          //       var errorMessage = error.message;
+          //     });
+          // }
+        )}
       />
     </View>
   );

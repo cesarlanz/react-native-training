@@ -3,12 +3,20 @@ import {StyleSheet, View, Text, Button} from 'react-native';
 import {connect} from 'react-redux';
 import SignUpForm from './forms/SignUpForm';
 
+
+
 const SignUpScreen = (props) => {
   const {navigation, number, increase} = props;
   console.log(number);
+
+  const handleRegisterUser = (values) => {
+    console.log(values);
+    props.registerUser(values); // Propiedad inyectada por mapDispatchToProps
+  };
+
   return (
     <View style={styles.container}>
-      <SignUpForm />
+      <SignUpForm onRegisterUser={handleRegisterUser} />
       <Button title="Regresar a Sign In" onPress={() => navigation.goBack()} />
     </View>
   );
@@ -30,8 +38,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    increase: () => {
-      dispatch({type: 'INCREASE_REDUCER_TEST'});
+    registerUser: (values) => {
+      dispatch({type: 'REGISTER_USER', data: values});
     },
   };
 };
