@@ -3,8 +3,6 @@ import {StyleSheet, View, Text, Button} from 'react-native';
 import {connect} from 'react-redux';
 import SignUpForm from './forms/SignUpForm';
 
-
-
 const SignUpScreen = (props) => {
   const {navigation, number, increase} = props;
   console.log(number);
