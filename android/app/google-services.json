@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "948432390638",
+    "firebase_url": "https://iustagram-9f29d.firebaseio.com",
+    "project_id": "iustagram-9f29d",
+    "storage_bucket": "iustagram-9f29d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:948432390638:android:2892a3a4115823c2bde6ff",
+        "android_client_info": {
+          "package_name": "com.iustagram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "948432390638-buqn6a8jj1q6tc9ggf03p41i9c9fibtg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.iustagram",
+            "certificate_hash": "7d2ab95593029a209274320dc39d45afa1a80c8c"
+          }
+        },
+        {
+          "client_id": "948432390638-7730k6l025i0qn14imad25vm8da39tc2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnrFsYp6JdeWYKtBE5wGQkCj0ci5EO9YU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "948432390638-7730k6l025i0qn14imad25vm8da39tc2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
