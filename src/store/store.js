@@ -2,6 +2,7 @@ import {createStore, combineReducers, applyMiddleware} from 'redux';
 import {reducer as form} from 'redux-form';
 import createSagaMiddleware from 'redux-saga';
 import primaryFunction from './sagas/sagas';
+import constants from './constants';
 
 const reducerTest = (state = [0], action) => {
   switch (action.type) {
@@ -12,10 +13,22 @@ const reducerTest = (state = [0], action) => {
   }
 };
 
+const reducerSession = (state = null, action) => {
+  switch (action.type) {
+    case constants.SET_SESSION:
+      return action.data;
+    case constants.CLOSE_SESSION:
+      return null;
+    default:
+      return state;
+  }
+};
+
 const sagaMidleware = createSagaMiddleware();
 
 const reducers = combineReducers({
   reducerTest,
+  reducerSession,
   form,
 });
 

@@ -9,3 +9,12 @@ export const actionLoginUser = (values) => ({
   type: constants.LOGIN_USER,
   data: values,
 });
+
+export const actionSetSession = (values) => ({
+  type: constants.SET_SESSION,
+  data: values,
+});
+
+export const actionCloseSession = () => ({
+  type: constants.CLOSE_SESSION,
+});
