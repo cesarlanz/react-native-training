@@ -2,7 +2,6 @@ import React from 'react';
 import {Text, View, TextInput, StyleSheet} from 'react-native';
 
 const TextField = (props) => {
-  console.log('TextField', props);
   const {placeholder, input, type, meta} = props;
   return (
     <View style={styles.textField}>

@@ -2,13 +2,12 @@ import React from 'react';
 import {StyleSheet, View, Text, Button} from 'react-native';
 import {connect} from 'react-redux';
 import SignUpForm from './forms/SignUpForm';
+import {actionRegisterUser} from '../../store/actions';
 
 const SignUpScreen = (props) => {
-  const {navigation, number, increase} = props;
-  console.log(number);
+  const {navigation} = props;
 
   const handleRegisterUser = (values) => {
-    console.log(values);
     props.registerUser(values); // Propiedad inyectada por mapDispatchToProps
   };
 
@@ -37,7 +36,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     registerUser: (values) => {
-      dispatch({type: 'REGISTER_USER', data: values});
+      dispatch(actionRegisterUser(values));
     },
   };
 };

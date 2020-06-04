@@ -19,12 +19,7 @@ const SignInForm = (props) => {
         name="password"
         placeholder="********"
       />
-      <Button
-        title="Entrar"
-        onPress={props.handleSubmit((values) => {
-          console.log(values);
-        })}
-      />
+      <Button title="Entrar" onPress={props.handleSubmit(props.onLoginUser)} />
     </View>
   );
 };

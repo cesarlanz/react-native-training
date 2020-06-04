@@ -1,24 +1,48 @@
 import {takeEvery, call} from 'redux-saga/effects';
-import {authentication} from '../services/firebase';
+import {auth, base} from '../services/firebase';
+import constants from '../../store/constants';
 
-const registerOnFirebase = (values) =>
-  authentication
-    .createUserWithEmailAndPassword(values.email, values.password)
-    .then((success) => {
-      console.log('success', success);
-    })
-    .catch((error) => {
-      console.log('error', error);
-      var errorCode = error.code;
-      var errorMessage = error.message;
-    });
+const registerUser = ({email, password}) =>
+  auth
+    .createUserWithEmailAndPassword(email, password)
+    .then((success) => success.user.toJSON());
 
-function* registerGenerator(values) {
-  yield call(registerOnFirebase, values.data);
-  console.log(values);
+const createUser = ({uid, email, name}) =>
+  base
+    .collection('users')
+    .doc(uid)
+    .set({email, name})
+    .then(() => true);
+
+const loginUser = ({email, password}) =>
+  auth
+    .signInWithEmailAndPassword(email, password)
+    .then((success) => success.user.toJSON());
+
+function* sagaRegisterUser(values) {
+  try {
+    const register = yield call(registerUser, values.data);
+    const {uid, email} = register;
+    const {
+      data: {name},
+    } = values;
+    yield call(createUser, {uid, email, name});
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+function* sagaLoginUser(values) {
+  try {
+    const login = yield call(loginUser, values.data);
+    console.log('login', login);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export default function* primaryFunction() {
-  yield takeEvery('REGISTER_USER', registerGenerator);
+  yield takeEvery(constants.REGISTER_USER, sagaRegisterUser);
+  yield takeEvery(constants.LOGIN_USER, sagaLoginUser);
   console.log('FUNCION GENERADORA');
 }
