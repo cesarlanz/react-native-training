@@ -1,11 +1,10 @@
-import React, {useState} from 'react';
-import {StyleSheet, View, Text, Button, Image} from 'react-native';
+import React from 'react';
+import {StyleSheet, View, Image} from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import { autofill } from 'redux-form';
 
 const SelectImage = (props) => {
-  const [avatarSource, setAvatarSource] = useState(null);
+  //const [avatarSource, setAvatarSource] = useState(null);
 
   // More info on all the options is below in the API Reference... just some common use cases shown here
   const options = {
@@ -32,12 +31,13 @@ const SelectImage = (props) => {
         // } else if (response.customButton) {
         //   console.log('User tapped custom button: ', response.customButton);
       } else {
-        const source = {uri: response.uri};
+        const image = {uri: response.uri};
 
         // You can also display the image using data:
-        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+        // const image = { uri: 'data:image/jpeg;base64,' + response.data };
 
-        setAvatarSource(source);
+        //setAvatarSource(image);
+        props.onUploadImage(image);
       }
     });
   };
@@ -46,7 +46,7 @@ const SelectImage = (props) => {
     <View style={styles.container}>
       <TouchableOpacity onPress={pickImage}>
         <Image
-          source={avatarSource || require('../assets/avatar-1577909_640.png')}
+          source={props.image || require('../assets/avatar-1577909_640.png')}
           style={styles.uploadAvatar}
         />
       </TouchableOpacity>
