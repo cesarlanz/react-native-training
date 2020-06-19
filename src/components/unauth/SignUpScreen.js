@@ -3,6 +3,7 @@ import {StyleSheet, View, Text, Button} from 'react-native';
 import {connect} from 'react-redux';
 import SignUpForm from './forms/SignUpForm';
 import {actionRegisterUser} from '../../store/actions';
+import SelectImage from '../SelectImage';
 
 const SignUpScreen = (props) => {
   const {navigation} = props;
@@ -13,6 +14,7 @@ const SignUpScreen = (props) => {
 
   return (
     <View style={styles.container}>
+      <SelectImage />
       <SignUpForm onRegisterUser={handleRegisterUser} />
       <Button title="Regresar a Sign In" onPress={() => navigation.goBack()} />
     </View>
@@ -23,7 +25,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    paddingHorizontal: 16,
   },
 });
 

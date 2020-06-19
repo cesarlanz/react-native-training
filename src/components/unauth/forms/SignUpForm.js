@@ -1,11 +1,11 @@
 import React from 'react';
-import {View, Button} from 'react-native';
+import {StyleSheet, View, Button} from 'react-native';
 import {Field, reduxForm} from 'redux-form';
 import TextField from './../../common/TextField';
 
 const SignUpForm = (props) => {
   return (
-    <View>
+    <View style={styles.container}>
       <Field
         component={TextField}
         type="text"
@@ -37,6 +37,13 @@ const SignUpForm = (props) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 3,
+    paddingHorizontal: 16,
+  },
+});
 
 const validate = (values) => {
   const errors = {};
