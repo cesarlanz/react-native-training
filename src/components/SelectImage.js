@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text, Button, Image} from 'react-native';
 import ImagePicker from 'react-native-image-picker';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import { autofill } from 'redux-form';
 
 const SelectImage = (props) => {
   const [avatarSource, setAvatarSource] = useState(null);
@@ -42,10 +44,12 @@ const SelectImage = (props) => {
 
   return (
     <View style={styles.container}>
-      <Button title="Pick an image from camera roll" onPress={pickImage} />
-      {avatarSource && (
-        <Image source={avatarSource} style={styles.uploadAvatar} />
-      )}
+      <TouchableOpacity onPress={pickImage}>
+        <Image
+          source={avatarSource || require('../assets/avatar-1577909_640.png')}
+          style={styles.uploadAvatar}
+        />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -59,6 +63,7 @@ const styles = StyleSheet.create({
   uploadAvatar: {
     width: 200,
     height: 200,
+    borderRadius: 100,
   },
 });
 
