@@ -1,10 +1,14 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, View, Text, Button} from 'react-native';
+import {StyleSheet, View, Button} from 'react-native';
 import {connect} from 'react-redux';
+import {blur, change} from 'redux-form';
 import SignUpForm from './forms/SignUpForm';
-import {actionRegisterUser} from '../../store/actions';
+import {
+  actionRegisterUser,
+  actionUploadImageSignUp,
+  actionCleanImageSignUp,
+} from '../../store/actions';
 import SelectImage from '../SelectImage';
-import constants from '../../store/constants';
 
 const SignUpScreen = (props) => {
   const {navigation} = props;
@@ -22,15 +26,16 @@ const SignUpScreen = (props) => {
   };
 
   useEffect(() => {
-    return () => {
+    const unsubscribe = navigation.addListener('blur', (payload) => {
       handleCleanImage();
-    };
+    });
+    return unsubscribe;
   });
 
   return (
     <View style={styles.container}>
       <SelectImage image={props.image} onUploadImage={handleUploadImage} />
-      <SignUpForm onRegisterUser={handleRegisterUser} />
+      <SignUpForm image={props.image} onRegisterUser={handleRegisterUser} />
       <Button title="Regresar a Sign In" onPress={() => navigation.goBack()} />
     </View>
   );
@@ -56,10 +61,11 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(actionRegisterUser(values));
     },
     uploadImage: (image) => {
-      dispatch({type: constants.SET_SIGNUP_IMAGE, image});
+      dispatch(actionUploadImageSignUp(image));
+      dispatch(blur('SignUpForm', 'image', Date.now()));
     },
     cleanImage: () => {
-      dispatch({type: constants.CLEAN_SIGNUP_IMAGE});
+      dispatch(actionCleanImageSignUp());
     },
   };
 };

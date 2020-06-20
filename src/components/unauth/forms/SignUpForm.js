@@ -2,10 +2,12 @@ import React from 'react';
 import {StyleSheet, View, Button} from 'react-native';
 import {Field, reduxForm} from 'redux-form';
 import TextField from './../../common/TextField';
+import ImageField from './../../common/ImageField';
 
 const SignUpForm = (props) => {
   return (
     <View style={styles.container}>
+      <Field component={ImageField} name="image" />
       <Field
         component={TextField}
         type="text"
@@ -45,8 +47,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const validate = (values) => {
+const validate = (values, props) => {
   const errors = {};
+  console.log('IMAGEN', props.image);
+  if (!props.image) {
+    errors.image = 'Image is required';
+  }
   if (!values.name) {
     errors.name = 'Required';
   } else if (values.name.length < 8) {

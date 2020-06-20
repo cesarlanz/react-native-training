@@ -18,3 +18,12 @@ export const actionSetSession = (values) => ({
 export const actionCloseSession = () => ({
   type: constants.CLOSE_SESSION,
 });
+
+export const actionUploadImageSignUp = (image) => ({
+  type: constants.SET_SIGNUP_IMAGE,
+  image,
+});
+
+export const actionCleanImageSignUp = () => ({
+  type: constants.CLEAN_SIGNUP_IMAGE,
+});
